@@ -38,10 +38,10 @@ willAlwaysSucceed { result in
 	}
 }
 
-willAlwaysFail { resultReturner in
+willAlwaysFail { result in
 	do {
-		let result = try resultReturner()
-		print("Got result \(result)")
+		let value = try result()
+		print("Got value \(value)")
 	}
 	catch let error {
 		print("Caught error \(error)")
@@ -179,7 +179,7 @@ failPromise.start(useResult)
 
 func willAlwaysSucceed2WithArg(argument: Int, resultReturner: (Result<ExampleValue>) -> Void) {
 	resultReturner(
-		Result(ExampleValue(number: 15))
+		Result(ExampleValue(number: argument + 3))
 	)
 }
 
